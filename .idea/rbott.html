@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<head>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <link href='https://fonts.googleapis.com/css?family=Poller+One' rel='stylesheet' type='text/css'>
+
+    <style>
+        @keyframes dance{
+            from{
+                left: 600px;
+            }}
+        @-webkit-keyframes dance{
+            from{
+                left: 600px;
+            }}
+        @-moz-keyframes dance{
+            from{
+                left: 600px;
+            }}
+        img {
+            animation: dance 4s infinite;
+            -webkit-animation: dance 4s infinite;
+            -moz-animation: dance 4s infinite;
+            position: absolute;
+            top: 50px;
+            left: 400px;
+            max-width: 50%;
+            height: auto;
+        }
+
+        .robot {
+            position: relative;
+            left: 100px;
+        }
+
+        .beep {
+            width: 5px;
+            height: 0;
+            border: 5px solid transparent;
+            border-top: 10px solid #777;
+            border-bottom: 80px solid #888;
+            position: relative;
+            left: 140px;
+        }
+
+        @keyframes blink {
+            50% {
+                background: radial-gradient(circle, red 15%, transparent 40%), #cc5;
+                background-size: 50% 100%;
+            }}
+        @-moz-keyframes blink {
+            50% {
+                background: -mox-radial-gradient(circle, red 15%, transparent 40%), #cc5;
+                background-size: 50% 100%;
+            }}
+        @-webkit-keyframes blink {
+            50% {
+                background: -webkit-radial-gradient(circle, red 15%, transparent 40%), #cc5;
+                background-size: 50% 100%;
+            }}
+
+        .laser{
+            animation: blink .5s infinite;
+            -webkit-animation: blink .5s infinite;
+            -moz-animation: blink .5s infinite;
+        }
+        .brain {
+            /*background-size: 75px 150px;*/
+            background: radial-gradient(circle, white 15%, transparent 40%), #06BD7D;
+            background: -moz-radial-gradient(circle, white 15%, transparent 40%), #06BD7D;
+            background: -webkit-radial-gradient(circle, white 15%, transparent 40%), #06BD7D;
+            background-size: 75px 150px;
+            height: 150px;
+            width: 150px;
+            border-radius: 60px 60px 10px 10px;
+            border-bottom: 40px double #666;
+            position: relative;
+            left: 70px;
+        }
+        .torso {
+            height: 0;
+            width: 140px;
+            border-top: 300px solid #06BD7D;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-radius: 20px 20px 100px 100px;
+        }
+        .left {
+            font-family: 'Poller One', verdana, arial, sans-serif;
+            font-weight: bold;
+            font-size: 250px;
+            color: #666;
+            transform: rotate(200deg);
+            -webkit-transform: rotate(200deg);
+            -moz-transform: rotate(200deg);
+            position: relative;
+            top: -320px;
+            left: -190px;
+            z-index: -1;
+        }
+        .right {
+            font-family: 'Poller One', verdana, arial, sans-serif;
+            font-weight: bold;
+            font-size: 250px;
+            color: #666;
+            transform: scaleY(-1) rotate(20deg);
+            -webkit-transform: scaleY(-1) rotate(20deg);
+            -moz-transform: scaleY(-1) rotate(20deg);
+            position: relative;
+            top: -620px;
+            left: 190px;
+            z-index: -1;
+        }
+        .foot {
+            height: 40px;
+            width: 40px;
+            background: #ccc;
+            border-radius: 40px;
+            border: 15px solid #999;
+            position: relative;
+            left: 110px;
+            top: -10px;
+            z-index: -1;
+        }
+        body{
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="robot">
+    <div class="beep"></div>
+    <div class="brain"></div>
+    <div class="torso">
+        <div class="left">j</div>
+        <div class="right">j</div>
+    </div>
+    <div class="foot"></div>
+</div>
+
+<button class="flash">Laser Eyes</button>
+<button class="color">Change Color</button>
+<button class="moves">Break/Dance</button>
+
+<img src="https://media4.giphy.com/avatars/HeyAutoHQ/DgfrJNR8oUyv.gif">
+
+<script>
+    //when you hear a click on flash class, toggle laser class on brain
+    $(".flash").click(function() {
+        $(".brain").toggleClass('laser');
+    });
+
+    // generates random number for colors when color button is clicked
+    $(".color").click(function() {
+        var red = Math.floor(Math.random() * 255);
+        var green = Math.floor(Math.random() * 255);
+        var blue = Math.floor(Math.random() * 255);
+        // takes random variables from above and shows in alert.
+        var randomRGBA = 'rgba('+red +','+ green +','+ blue+',1)';
+
+        // alert(randomRGBA);
+
+        $("body").css("background", randomRGBA);
+    });
+
+    // toggles img element on/off
+    $(".moves").click(function(){
+        $("img").toggle();
+    });
+
+</script>
+
+</body>
